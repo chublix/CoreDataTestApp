@@ -20,3 +20,5 @@ DerivedData
 *~.nib
 *.swp
 Pods/
+.bundle
+vendor
