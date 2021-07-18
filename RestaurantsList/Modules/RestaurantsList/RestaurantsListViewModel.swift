@@ -7,6 +7,7 @@
 
 import CoreData
 import RxSwift
+import CoreLocation
 
 final class RestaurantsListViewModel: NSObject {
     
@@ -17,7 +18,7 @@ final class RestaurantsListViewModel: NSObject {
     //MARK: Internal properties
     private lazy var fetchedResultsController: NSFetchedResultsController<Restaurant> = {
         let request: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
-        request.sortDescriptors = []
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let controller: NSFetchedResultsController<Restaurant> = .init(
             fetchRequest: request,
             managedObjectContext: coreDataStack.persistentContainer.viewContext,
@@ -47,19 +48,28 @@ final class RestaurantsListViewModel: NSObject {
     }
     
     private func putDataIntoStorage(restaurants: [RestaurantDTO]) {
-        coreDataStack.persistentContainer.performBackgroundTask { [weak self] context in
-            context.automaticallyMergesChangesFromParent = true
+        coreDataStack.persistentContainer.viewContext.perform { [weak self] in
             do {
                 let data = try JSONEncoder().encode(restaurants)
                 let objects = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
                 let insert = NSBatchInsertRequest(entityName: "Restaurant", objects: objects ?? [])
-                try context.execute(insert)
+                try self?.coreDataStack.persistentContainer.viewContext.execute(insert)
+//                try context.save()
             } catch {
                 debugPrint(error)
             }
-            try? context.save()
+            
             self?.coreDataStack.saveContext()
         }
+    }
+    
+    func addRestaurantWith(name: String, address: String, coordinate: CLLocationCoordinate2D) {
+        let restaurant = Restaurant(context: coreDataStack.persistentContainer.viewContext)
+        restaurant.name = name
+        restaurant.address = address
+        restaurant.latitude = coordinate.latitude
+        restaurant.longitude = coordinate.longitude
+        coreDataStack.saveContext()
     }
     
 }

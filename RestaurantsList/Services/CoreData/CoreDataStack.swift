@@ -41,6 +41,7 @@ final class CoreDataStack {
     
     private init() {
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer.viewContext.mergePolicy = NSMergePolicy.overwrite
     }
 
     // MARK: - Core Data Saving support
