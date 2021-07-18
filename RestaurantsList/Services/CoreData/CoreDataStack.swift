@@ -5,17 +5,14 @@
 //  Created by Andriy Chuprina on 7/18/21.
 //
 
-import Foundation
 import CoreData
 
-protocol CoreDataStack {
-    func setup()
-}
-
-final class CoreDataStackImpl: CoreDataStack {
+final class CoreDataStack {
+    
+    static let shared = CoreDataStack()
     
     // MARK: - Core Data stack
-    private lazy var persistentContainer: NSPersistentContainer = {
+    private(set) lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -42,12 +39,12 @@ final class CoreDataStackImpl: CoreDataStack {
         return container
     }()
     
-    func setup() {
-        _ = persistentContainer
+    private init() {
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
 
     // MARK: - Core Data Saving support
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

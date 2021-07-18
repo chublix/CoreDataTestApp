@@ -7,4 +7,5 @@ target 'RestaurantsList' do
 
   # Pods for RestaurantsList
   pod 'RxSwift'
+  pod 'RxCocoa'
 end

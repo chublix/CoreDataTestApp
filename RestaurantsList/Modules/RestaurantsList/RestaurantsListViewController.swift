@@ -6,24 +6,50 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import MapKit
 
 class RestaurantsListViewController: UIViewController {
 
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var mapView: MKMapView!
+    
+    private let cellIdentifier = "RestaurantTableViewCell"
+    private let disposeBag = DisposeBag()
+    
+    var viewModel: RestaurantsListViewModel = .make()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupTableView()
+        bindModel()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupTableView() {
+        let nib = UINib(nibName: cellIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
+        tableView.tableFooterView = .init()
+        mapView.delegate = self
     }
-    */
+    
+    private func bindModel() {
+        viewModel.restaurants.bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) { row, model, cell in
+            (cell as? RestaurantTableViewCell)?.setup(with: model)
+        }.disposed(by: disposeBag)
+        viewModel.start()
+        viewModel.restaurants.subscribe(onNext: { [weak mapView] restaurants in
+            if let annotations = mapView?.annotations {
+                mapView?.removeAnnotations(annotations)
+            }
+            mapView?.addAnnotations(restaurants.map(Annotation.init(restaurant:)))
+        }).disposed(by: disposeBag)
+    }
 
+}
+
+extension RestaurantsListViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        return mapView.dequeueReusableAnnotationView(withIdentifier: "annotation", for: annotation)
+    }
 }

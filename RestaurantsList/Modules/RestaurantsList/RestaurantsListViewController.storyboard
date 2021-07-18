@@ -16,13 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-cF-m5Y">
+                                <rect key="frame" x="0.0" y="339.5" width="414" height="522.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tdi-hN-WXT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="295.5"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Tdi-hN-WXT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3a8-zr-H9E"/>
+                            <constraint firstItem="r6j-cF-m5Y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="N2T-bY-zkf"/>
+                            <constraint firstItem="r6j-cF-m5Y" firstAttribute="top" secondItem="Tdi-hN-WXT" secondAttribute="bottom" id="Ovw-Wn-xT4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="r6j-cF-m5Y" secondAttribute="bottom" id="ZTX-Ic-UbL"/>
+                            <constraint firstItem="Tdi-hN-WXT" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Zmn-zE-GIJ"/>
+                            <constraint firstItem="r6j-cF-m5Y" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="m64-DK-A9h"/>
+                            <constraint firstItem="Tdi-hN-WXT" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.33" id="mPD-9j-70l"/>
+                            <constraint firstItem="Tdi-hN-WXT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="zfc-mW-YaW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Tdi-hN-WXT" id="sU2-At-f7Y"/>
+                        <outlet property="tableView" destination="r6j-cF-m5Y" id="945-zE-4wp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30" y="70"/>
+            <point key="canvasLocation" x="28.985507246376812" y="69.642857142857139"/>
         </scene>
     </scenes>
     <resources>
