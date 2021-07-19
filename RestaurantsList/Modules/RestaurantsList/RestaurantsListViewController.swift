@@ -50,6 +50,7 @@ class RestaurantsListViewController: UIViewController {
             let annotations = restaurants.map(Annotation.init(restaurant:))
             mapView?.addAnnotations(annotations)
         }).disposed(by: disposeBag)
+        viewModel.errorMessage.subscribe(onNext: showError(with:)).disposed(by: disposeBag)
         viewModel.start()
     }
     
@@ -59,11 +60,9 @@ class RestaurantsListViewController: UIViewController {
         alert.addTextField { $0.placeholder = "Address" }
         alert.addAction(.init(title: "Cancel", style: .cancel))
         alert.addAction(.init(title: "Add", style: .default, handler: {  [weak self] _ in
-            guard let self = self else { return }
             guard let name = alert.textFields?[0].text, !name.isEmpty else { return }
             guard let address = alert.textFields?[1].text, !address.isEmpty else { return }
-            let coordinate = self.mapView.userLocation.coordinate
-            self.viewModel.addRestaurantWith(name: name, address: address, coordinate: coordinate)
+            self?.viewModel.addRestaurantWith(name: name, address: address)
         }))
         present(alert, animated: true)
     }
@@ -77,4 +76,14 @@ extension RestaurantsListViewController: MKMapViewDelegate {
         annotationView.canShowCallout = true
         return annotationView
     }
+}
+
+extension RestaurantsListViewController {
+    
+    private func showError(with message: String) {
+        let alert = UIAlertController(title: "Something went wrong", message: message, preferredStyle: .alert)
+        alert.addAction(.init(title: "Ok", style: .default))
+        present(alert, animated: true)
+    }
+    
 }

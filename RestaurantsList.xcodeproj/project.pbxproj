@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8095CD8D4851DF1506F072A0 /* Pods_RestaurantsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA12EB0FC44DAEFA9A0490F /* Pods_RestaurantsList.framework */; };
+		EA0A5C0D26A5FD4400EFD364 /* EntityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A5C0C26A5FD4400EFD364 /* EntityDTO.swift */; };
 		EA8EB0D726A0C594002CB388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0D626A0C594002CB388 /* AppDelegate.swift */; };
 		EA8EB0E126A0C594002CB388 /* RestaurantsList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0DF26A0C594002CB388 /* RestaurantsList.xcdatamodeld */; };
 		EA8EB0E326A0C596002CB388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8EB0E226A0C596002CB388 /* Assets.xcassets */; };
@@ -24,12 +25,14 @@
 		EA8EB10C26A4ACF1002CB388 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB10A26A4ACF1002CB388 /* RestaurantTableViewCell.swift */; };
 		EA8EB10D26A4ACF1002CB388 /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8EB10B26A4ACF1002CB388 /* RestaurantTableViewCell.xib */; };
 		EA8EB10F26A4C6BD002CB388 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB10E26A4C6BD002CB388 /* Annotation.swift */; };
+		EA8EB11226A540CD002CB388 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB11126A540CD002CB388 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EA12EB0FC44DAEFA9A0490F /* Pods_RestaurantsList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestaurantsList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		482CE21DE11D3887F84446A9 /* Pods-RestaurantsList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantsList.release.xcconfig"; path = "Target Support Files/Pods-RestaurantsList/Pods-RestaurantsList.release.xcconfig"; sourceTree = "<group>"; };
 		558526AAE5625B6DDBA17090 /* Pods-RestaurantsList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantsList.debug.xcconfig"; path = "Target Support Files/Pods-RestaurantsList/Pods-RestaurantsList.debug.xcconfig"; sourceTree = "<group>"; };
+		EA0A5C0C26A5FD4400EFD364 /* EntityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDTO.swift; sourceTree = "<group>"; };
 		EA8EB0D326A0C594002CB388 /* RestaurantsList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantsList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8EB0D626A0C594002CB388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA8EB0E026A0C594002CB388 /* RestaurantsList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RestaurantsList.xcdatamodel; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		EA8EB10A26A4ACF1002CB388 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		EA8EB10B26A4ACF1002CB388 /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		EA8EB10E26A4C6BD002CB388 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		EA8EB11126A540CD002CB388 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 		EA8EB0ED26A0C5B3002CB388 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				EA0A5C0C26A5FD4400EFD364 /* EntityDTO.swift */,
 				EA8EB0F626A0C6DC002CB388 /* Entities */,
 				EA8EB0DF26A0C594002CB388 /* RestaurantsList.xcdatamodeld */,
 			);
@@ -153,8 +158,9 @@
 		EA8EB0FB26A0C9F2002CB388 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EA8EB10626A4AA98002CB388 /* CoreData */,
 				EA8EB0FC26A0C9FF002CB388 /* Network */,
+				EA8EB10626A4AA98002CB388 /* CoreData */,
+				EA8EB11026A5409E002CB388 /* Misc */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -207,6 +213,14 @@
 				EA8EB10B26A4ACF1002CB388 /* RestaurantTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA8EB11026A5409E002CB388 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				EA8EB11126A540CD002CB388 /* LocationService.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0A5C0D26A5FD4400EFD364 /* EntityDTO.swift in Sources */,
 				EA8EB10226A0CAD0002CB388 /* URLSession+RxSwift.swift in Sources */,
 				EA8EB0E126A0C594002CB388 /* RestaurantsList.xcdatamodeld in Sources */,
 				EA8EB10526A4A2AE002CB388 /* RestaurantDTO.swift in Sources */,
@@ -333,6 +348,7 @@
 				EA8EB10826A4AAAA002CB388 /* CoreDataStack.swift in Sources */,
 				EA8EB0FA26A0C71D002CB388 /* Restaurant+CoreDataProperties.swift in Sources */,
 				EA8EB0F226A0C629002CB388 /* RestaurantsListViewController.swift in Sources */,
+				EA8EB11226A540CD002CB388 /* LocationService.swift in Sources */,
 				EA8EB0D726A0C594002CB388 /* AppDelegate.swift in Sources */,
 				EA8EB10F26A4C6BD002CB388 /* Annotation.swift in Sources */,
 				EA8EB0F926A0C71D002CB388 /* Restaurant+CoreDataClass.swift in Sources */,

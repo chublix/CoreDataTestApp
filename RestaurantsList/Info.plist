@@ -43,5 +43,9 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Needs your location for strange things...</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Needs your location for strange things...</string>
 </dict>
 </plist>

@@ -14,6 +14,7 @@ final class RestaurantsListViewModel: NSObject {
     //MARK: Dependencies
     private let networkService: RestaurantsNetwork
     private let coreDataStack: CoreDataStack
+    private let locationService: LocationService
     
     //MARK: Internal properties
     private lazy var fetchedResultsController: NSFetchedResultsController<Restaurant> = {
@@ -21,7 +22,7 @@ final class RestaurantsListViewModel: NSObject {
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let controller: NSFetchedResultsController<Restaurant> = .init(
             fetchRequest: request,
-            managedObjectContext: coreDataStack.persistentContainer.viewContext,
+            managedObjectContext: coreDataStack.viewContext,
             sectionNameKeyPath: nil, cacheName: nil
         )
         controller.delegate = self
@@ -33,43 +34,40 @@ final class RestaurantsListViewModel: NSObject {
     
     // MARK: Outs
     let restaurants: PublishSubject<[Restaurant]> = .init()
+    let errorMessage: PublishSubject<String> = .init()
     
-    init(networkService: RestaurantsNetwork, coreDataStack: CoreDataStack) {
+    init(networkService: RestaurantsNetwork, coreDataStack: CoreDataStack, locationService: LocationService) {
         self.networkService = networkService
         self.coreDataStack = coreDataStack
+        self.locationService = locationService
         super.init()
     }
     
     func start() {
         restaurants.onNext(fetchedResultsController.fetchedObjects ?? [])
         networkService.fetch().subscribe(onSuccess: { [weak self] restaurants in
-            self?.putDataIntoStorage(restaurants: restaurants)
+            self?.coreDataStack.insert(restaurants)
         }).disposed(by: disposeBag)
     }
     
-    private func putDataIntoStorage(restaurants: [RestaurantDTO]) {
-        coreDataStack.persistentContainer.viewContext.perform { [weak self] in
-            do {
-                let data = try JSONEncoder().encode(restaurants)
-                let objects = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
-                let insert = NSBatchInsertRequest(entityName: "Restaurant", objects: objects ?? [])
-                try self?.coreDataStack.persistentContainer.viewContext.execute(insert)
-//                try context.save()
-            } catch {
-                debugPrint(error)
+    func addRestaurantWith(name: String, address: String) {
+        locationService.getCurrent().subscribe(onSuccess: { [weak self] coordinate in
+            let restaurant = RestaurantDTO(
+                name: name,
+                address: address,
+                latitude: coordinate.latitude,
+                longitude: coordinate.longitude)
+            self?.coreDataStack.insert(restaurant)
+        }, onFailure: { [weak self] error in
+            switch (error as? LocationServiceError) {
+            case .some(.denied):
+                self?.errorMessage.onNext("Access to location is denied.\nPlease enable it in application settings.")
+            case .some(.noData):
+                self?.errorMessage.onNext("No avaiable location data.")
+            default:
+                break
             }
-            
-            self?.coreDataStack.saveContext()
-        }
-    }
-    
-    func addRestaurantWith(name: String, address: String, coordinate: CLLocationCoordinate2D) {
-        let restaurant = Restaurant(context: coreDataStack.persistentContainer.viewContext)
-        restaurant.name = name
-        restaurant.address = address
-        restaurant.latitude = coordinate.latitude
-        restaurant.longitude = coordinate.longitude
-        coreDataStack.saveContext()
+        }).disposed(by: disposeBag)
     }
     
 }
@@ -83,9 +81,11 @@ extension RestaurantsListViewModel: NSFetchedResultsControllerDelegate {
 
 
 extension RestaurantsListViewModel {
-    
     class func make() -> RestaurantsListViewModel {
         let networkService = RestaurantsNetworkImpl(urlSession: .shared)
-        return RestaurantsListViewModel(networkService: networkService, coreDataStack: .shared)
+        let locationService = LocationServiceImpl()
+        return RestaurantsListViewModel(networkService: networkService,
+                                        coreDataStack: .shared,
+                                        locationService: locationService)
     }
 }

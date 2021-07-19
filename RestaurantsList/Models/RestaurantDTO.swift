@@ -14,7 +14,10 @@ struct RestaurantDTO {
     let longitude: Double
 }
 
-extension RestaurantDTO: Codable {
+extension RestaurantDTO: EntityDTO {
+    
+    static var entitiName: String { "Restaurant" }
+    
     enum DecodingKeys: String, CodingKey {
         case name = "Name"
         case address = "Address"

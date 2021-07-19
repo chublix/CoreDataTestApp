@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="383.5" width="414" height="429.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdi-hN-WXT">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tdi-hN-WXT">
                                 <rect key="frame" x="0.0" y="88" width="414" height="295.5"/>
                             </mapView>
                         </subviews>
