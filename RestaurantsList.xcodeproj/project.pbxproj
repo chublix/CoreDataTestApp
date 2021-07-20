@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8095CD8D4851DF1506F072A0 /* Pods_RestaurantsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA12EB0FC44DAEFA9A0490F /* Pods_RestaurantsList.framework */; };
 		EA0A5C0D26A5FD4400EFD364 /* EntityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A5C0C26A5FD4400EFD364 /* EntityDTO.swift */; };
+		EA0A5C1026A6A7D400EFD364 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A5C0E26A6A7D400EFD364 /* Restaurant+CoreDataProperties.swift */; };
+		EA0A5C1126A6A7D400EFD364 /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A5C0F26A6A7D400EFD364 /* Restaurant+CoreDataClass.swift */; };
 		EA8EB0D726A0C594002CB388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0D626A0C594002CB388 /* AppDelegate.swift */; };
 		EA8EB0E126A0C594002CB388 /* RestaurantsList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0DF26A0C594002CB388 /* RestaurantsList.xcdatamodeld */; };
 		EA8EB0E326A0C596002CB388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8EB0E226A0C596002CB388 /* Assets.xcassets */; };
@@ -16,8 +18,6 @@
 		EA8EB0F026A0C60C002CB388 /* RestaurantsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8EB0EF26A0C60C002CB388 /* RestaurantsListViewController.storyboard */; };
 		EA8EB0F226A0C629002CB388 /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0F126A0C629002CB388 /* RestaurantsListViewController.swift */; };
 		EA8EB0F526A0C649002CB388 /* RestaurantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0F426A0C649002CB388 /* RestaurantsListViewModel.swift */; };
-		EA8EB0F926A0C71D002CB388 /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0F726A0C71D002CB388 /* Restaurant+CoreDataClass.swift */; };
-		EA8EB0FA26A0C71D002CB388 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0F826A0C71D002CB388 /* Restaurant+CoreDataProperties.swift */; };
 		EA8EB0FE26A0CA2A002CB388 /* RestaurantsNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB0FD26A0CA2A002CB388 /* RestaurantsNetwork.swift */; };
 		EA8EB10226A0CAD0002CB388 /* URLSession+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB10126A0CAD0002CB388 /* URLSession+RxSwift.swift */; };
 		EA8EB10526A4A2AE002CB388 /* RestaurantDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8EB10426A4A2AE002CB388 /* RestaurantDTO.swift */; };
@@ -33,6 +33,8 @@
 		482CE21DE11D3887F84446A9 /* Pods-RestaurantsList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantsList.release.xcconfig"; path = "Target Support Files/Pods-RestaurantsList/Pods-RestaurantsList.release.xcconfig"; sourceTree = "<group>"; };
 		558526AAE5625B6DDBA17090 /* Pods-RestaurantsList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantsList.debug.xcconfig"; path = "Target Support Files/Pods-RestaurantsList/Pods-RestaurantsList.debug.xcconfig"; sourceTree = "<group>"; };
 		EA0A5C0C26A5FD4400EFD364 /* EntityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDTO.swift; sourceTree = "<group>"; };
+		EA0A5C0E26A6A7D400EFD364 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EA0A5C0F26A6A7D400EFD364 /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EA8EB0D326A0C594002CB388 /* RestaurantsList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantsList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8EB0D626A0C594002CB388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA8EB0E026A0C594002CB388 /* RestaurantsList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RestaurantsList.xcdatamodel; sourceTree = "<group>"; };
@@ -42,8 +44,6 @@
 		EA8EB0EF26A0C60C002CB388 /* RestaurantsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RestaurantsListViewController.storyboard; sourceTree = "<group>"; };
 		EA8EB0F126A0C629002CB388 /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
 		EA8EB0F426A0C649002CB388 /* RestaurantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewModel.swift; sourceTree = "<group>"; };
-		EA8EB0F726A0C71D002CB388 /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		EA8EB0F826A0C71D002CB388 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		EA8EB0FD26A0CA2A002CB388 /* RestaurantsNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsNetwork.swift; sourceTree = "<group>"; };
 		EA8EB10126A0CAD0002CB388 /* URLSession+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+RxSwift.swift"; sourceTree = "<group>"; };
 		EA8EB10426A4A2AE002CB388 /* RestaurantDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDTO.swift; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 		EA8EB0F626A0C6DC002CB388 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				EA8EB0F726A0C71D002CB388 /* Restaurant+CoreDataClass.swift */,
-				EA8EB0F826A0C71D002CB388 /* Restaurant+CoreDataProperties.swift */,
+				EA0A5C0F26A6A7D400EFD364 /* Restaurant+CoreDataClass.swift */,
+				EA0A5C0E26A6A7D400EFD364 /* Restaurant+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -344,14 +344,14 @@
 				EA8EB10526A4A2AE002CB388 /* RestaurantDTO.swift in Sources */,
 				EA8EB10C26A4ACF1002CB388 /* RestaurantTableViewCell.swift in Sources */,
 				EA8EB0FE26A0CA2A002CB388 /* RestaurantsNetwork.swift in Sources */,
+				EA0A5C1126A6A7D400EFD364 /* Restaurant+CoreDataClass.swift in Sources */,
 				EA8EB0F526A0C649002CB388 /* RestaurantsListViewModel.swift in Sources */,
 				EA8EB10826A4AAAA002CB388 /* CoreDataStack.swift in Sources */,
-				EA8EB0FA26A0C71D002CB388 /* Restaurant+CoreDataProperties.swift in Sources */,
 				EA8EB0F226A0C629002CB388 /* RestaurantsListViewController.swift in Sources */,
+				EA0A5C1026A6A7D400EFD364 /* Restaurant+CoreDataProperties.swift in Sources */,
 				EA8EB11226A540CD002CB388 /* LocationService.swift in Sources */,
 				EA8EB0D726A0C594002CB388 /* AppDelegate.swift in Sources */,
 				EA8EB10F26A4C6BD002CB388 /* Annotation.swift in Sources */,
-				EA8EB0F926A0C71D002CB388 /* Restaurant+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
